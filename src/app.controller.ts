@@ -13,6 +13,6 @@ export class AppController {
   @Get('/*')
   @Render('dynamic-page')
   page() {
-    return { message: 'pages' };
+    return { message: 'Pages' };
   }
 }
