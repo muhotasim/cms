@@ -13,6 +13,7 @@ import {
 import { Status } from './common';
 import { PageSectionContent } from './page-section-content';
 import { MetaInfo } from './meta-info.model';
+import { Sequelize } from 'sequelize';
 @Table({ underscored: true, tableName: 'pages' })
 export class Page extends Model {
   @PrimaryKey
@@ -37,11 +38,11 @@ export class Page extends Model {
   @HasOne(() => MetaInfo, 'metainfo_id')
   metaInfo: MetaInfo;
 
-  @Default(DataType.NOW)
+  @Default(Sequelize.fn('NOW'))
   @Column(DataType.DATE)
   createdAt: Date;
 
-  @Default(DataType.NOW)
+  @Default(Sequelize.fn('NOW'))
   @Column(DataType.DATE)
   updatedAt: Date;
 }

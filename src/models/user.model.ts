@@ -11,7 +11,7 @@ import {
 } from 'sequelize-typescript';
 import { Role } from './role.model';
 import { Status } from './common';
-
+import { Sequelize } from 'sequelize';
 @Table({ underscored: true, tableName: 'users' })
 export class User extends Model {
   @PrimaryKey
@@ -45,11 +45,11 @@ export class User extends Model {
   @BelongsTo(() => User, 'manager_id')
   manager: User;
 
-  @Default(DataType.NOW)
+  @Default(Sequelize.fn('NOW'))
   @Column(DataType.DATE)
   createdAt: Date;
 
-  @Default(DataType.NOW)
+  @Default(Sequelize.fn('NOW'))
   @Column(DataType.DATE)
   updatedAt: Date;
 }

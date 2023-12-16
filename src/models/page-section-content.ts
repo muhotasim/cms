@@ -12,6 +12,7 @@ import {
 import { Page } from './page.model';
 import { Section } from './section.model';
 import { Content } from './content.model';
+import { Sequelize } from 'sequelize';
 @Table({ underscored: true, tableName: 'page_section_content' })
 export class PageSectionContent extends Model {
   @PrimaryKey
@@ -40,11 +41,11 @@ export class PageSectionContent extends Model {
   @BelongsTo(() => Section, 'section_id')
   section: Section;
 
-  @Default(DataType.NOW)
+  @Default(Sequelize.fn('NOW'))
   @Column(DataType.DATE)
   createdAt: Date;
 
-  @Default(DataType.NOW)
+  @Default(Sequelize.fn('NOW'))
   @Column(DataType.DATE)
   updatedAt: Date;
 }

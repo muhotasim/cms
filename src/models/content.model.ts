@@ -14,6 +14,7 @@ import { ContentType, Status } from './common';
 import { ContentDetails } from './content-details.model';
 import { PageSectionContent } from './page-section-content';
 import { MetaInfo } from './meta-info.model';
+import { Sequelize } from 'sequelize';
 
 @Table({ underscored: true, tableName: 'contents' })
 export class Content extends Model {
@@ -53,11 +54,11 @@ export class Content extends Model {
   @HasMany(() => PageSectionContent, 'content_id')
   pageSectionContent: PageSectionContent[];
 
-  @Default(DataType.NOW)
+  @Default(Sequelize.fn('NOW'))
   @Column(DataType.DATE)
   createdAt: Date;
 
-  @Default(DataType.NOW)
+  @Default(Sequelize.fn('NOW'))
   @Column(DataType.DATE)
   updatedAt: Date;
 }

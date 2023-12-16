@@ -10,6 +10,7 @@ import {
 } from 'sequelize-typescript';
 import { Status } from './common';
 import { PageSectionContent } from './page-section-content';
+import { Sequelize } from 'sequelize';
 @Table({ underscored: true, tableName: 'sections' })
 export class Section extends Model {
   @PrimaryKey
@@ -26,11 +27,11 @@ export class Section extends Model {
   @HasMany(() => PageSectionContent, 'section_id')
   pageSectionContent: PageSectionContent[];
 
-  @Default(DataType.NOW)
+  @Default(Sequelize.fn('NOW'))
   @Column(DataType.DATE)
   createdAt: Date;
 
-  @Default(DataType.NOW)
+  @Default(Sequelize.fn('NOW'))
   @Column(DataType.DATE)
   updatedAt: Date;
 }
