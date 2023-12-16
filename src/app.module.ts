@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { SequelizeConfig } from './config/database';
 import { CacheModule } from '@nestjs/cache-manager';
@@ -13,6 +12,6 @@ import * as BaseModel from './models';
     CacheModule.register(),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [],
 })
 export class AppModule {}
