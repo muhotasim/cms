@@ -3,13 +3,16 @@ import {
   Column,
   DataType,
   Default,
+  ForeignKey,
   HasMany,
+  HasOne,
   Model,
   PrimaryKey,
   Table,
 } from 'sequelize-typescript';
 import { Status } from './common';
 import { PageSectionContent } from './page-section-content';
+import { MetaInfo } from './meta-info.model';
 @Table({ underscored: true, tableName: 'pages' })
 export class Page extends Model {
   @PrimaryKey
@@ -26,4 +29,11 @@ export class Page extends Model {
 
   @HasMany(() => PageSectionContent, 'page_id')
   pageSectionContent: PageSectionContent[];
+
+  @ForeignKey(() => MetaInfo)
+  @Column
+  metainfoId: number;
+
+  @HasOne(() => MetaInfo, 'metainfo_id')
+  metaInfo: MetaInfo;
 }

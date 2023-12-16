@@ -10,17 +10,8 @@ import {
   Table,
 } from 'sequelize-typescript';
 import { Content } from './content.model';
-import { Status } from './common';
-enum FormFieldType {
-  Text = 'text',
-  Textarea = 'textarea',
-  Number = 'number',
-  Email = 'email',
-  Date = 'date',
-  Select = 'select',
-  Radio = 'radio',
-  Checkbox = 'checkbox',
-}
+import { FormFieldType, Status } from './common';
+
 @Table({ underscored: true, tableName: 'forms' })
 export class Form extends Model {
   @PrimaryKey

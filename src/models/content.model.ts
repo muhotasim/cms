@@ -10,19 +10,11 @@ import {
   HasMany,
   HasOne,
 } from 'sequelize-typescript';
-import { Status } from './common';
+import { ContentType, Status } from './common';
 import { ContentDetails } from './content-details.model';
 import { PageSectionContent } from './page-section-content';
 import { MetaInfo } from './meta-info.model';
-enum ContentType {
-  post = 'post',
-  link = 'link',
-  audio = 'audio',
-  video = 'video',
-  form = 'form',
-  image = 'image',
-  file = 'file',
-}
+
 @Table({ underscored: true, tableName: 'contents' })
 export class Content extends Model {
   @PrimaryKey
@@ -45,6 +37,9 @@ export class Content extends Model {
   @Column(DataType.ENUM(...Object.values(Status)))
   status: Status;
 
+  @HasMany(() => Content, 'parent_id')
+  contents: Content[];
+
   @HasMany(() => ContentDetails, 'content_id')
   details: ContentDetails[];
 
@@ -53,7 +48,7 @@ export class Content extends Model {
   metainfoId: number;
 
   @HasOne(() => MetaInfo, 'metainfo_id')
-  metaInfo: MetaInfo;
+  metaInfo?: MetaInfo;
 
   @HasMany(() => PageSectionContent, 'content_id')
   pageSectionContent: PageSectionContent[];
