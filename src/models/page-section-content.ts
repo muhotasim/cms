@@ -2,6 +2,8 @@ import {
   AutoIncrement,
   BelongsTo,
   Column,
+  DataType,
+  Default,
   ForeignKey,
   Model,
   PrimaryKey,
@@ -37,4 +39,12 @@ export class PageSectionContent extends Model {
 
   @BelongsTo(() => Section, 'section_id')
   section: Section;
+
+  @Default(DataType.NOW)
+  @Column(DataType.DATE)
+  createdAt: Date;
+
+  @Default(DataType.NOW)
+  @Column(DataType.DATE)
+  updatedAt: Date;
 }

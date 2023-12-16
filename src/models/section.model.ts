@@ -25,4 +25,12 @@ export class Section extends Model {
 
   @HasMany(() => PageSectionContent, 'section_id')
   pageSectionContent: PageSectionContent[];
+
+  @Default(DataType.NOW)
+  @Column(DataType.DATE)
+  createdAt: Date;
+
+  @Default(DataType.NOW)
+  @Column(DataType.DATE)
+  updatedAt: Date;
 }

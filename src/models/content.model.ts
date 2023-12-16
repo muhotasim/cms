@@ -52,4 +52,12 @@ export class Content extends Model {
 
   @HasMany(() => PageSectionContent, 'content_id')
   pageSectionContent: PageSectionContent[];
+
+  @Default(DataType.NOW)
+  @Column(DataType.DATE)
+  createdAt: Date;
+
+  @Default(DataType.NOW)
+  @Column(DataType.DATE)
+  updatedAt: Date;
 }

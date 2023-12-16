@@ -36,4 +36,12 @@ export class Page extends Model {
 
   @HasOne(() => MetaInfo, 'metainfo_id')
   metaInfo: MetaInfo;
+
+  @Default(DataType.NOW)
+  @Column(DataType.DATE)
+  createdAt: Date;
+
+  @Default(DataType.NOW)
+  @Column(DataType.DATE)
+  updatedAt: Date;
 }

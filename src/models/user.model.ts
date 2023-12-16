@@ -44,4 +44,12 @@ export class User extends Model {
 
   @BelongsTo(() => User, 'manager_id')
   manager: User;
+
+  @Default(DataType.NOW)
+  @Column(DataType.DATE)
+  createdAt: Date;
+
+  @Default(DataType.NOW)
+  @Column(DataType.DATE)
+  updatedAt: Date;
 }
