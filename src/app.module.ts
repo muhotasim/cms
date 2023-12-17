@@ -3,13 +3,18 @@ import { AppController } from './app.controller';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { SequelizeConfig } from './config/database';
 import { CacheModule } from '@nestjs/cache-manager';
-import * as BaseModel from './models';
+// modules
+import { UsersModule } from './_modules/users/users.module';
+import { PagesModule } from './_modules/pages/pages.module';
+import { MenusModule } from './_modules/memu/menus.module';
 
 @Module({
   imports: [
     SequelizeModule.forRootAsync({ useClass: SequelizeConfig }),
-    SequelizeModule.forFeature(Object.values(BaseModel)),
     CacheModule.register(),
+    UsersModule,
+    PagesModule,
+    MenusModule,
   ],
   controllers: [AppController],
   providers: [],
